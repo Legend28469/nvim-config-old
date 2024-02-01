@@ -17,8 +17,16 @@ return {
 		lazy = false,
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			local wk = require("which-key")
+
+			wk.register({
+				c = {
+					name = "Code",
+				},
+			}, { prefix = "<leader>" })
 
 			local lspconfig = require("lspconfig")
+
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
 			})
@@ -39,7 +47,7 @@ return {
 			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
 			vim.keymap.set(
 				"n",
-				"<leader>e",
+				"<leader>ce",
 				":lua vim.diagnostic.open_float(0, {scope='line'})<CR>",
 				{ desc = "Expand LSP Message(s)" }
 			)
